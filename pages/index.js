@@ -5,15 +5,13 @@ import PopUpComp from '../components/popUp/PopUpComp'
 import Chapters from '../components/navigation/Chapters'
 import RuleList from '../components/rules/RuleList'
 import Logo from '../components/navigation/logo/Logo'
+import { RULES_URL } from '../lib/rules'
 
 //Created by Daniele Johannes Vaccari
 
-//Fetch .txt data at https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData.
+//Fetches the rules .txt at build time.
 export const getStaticProps = async () => {
-
-  //https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData
-  //https://newest-react-express.herokuapp.com/
-  const res = await fetch('https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruleData')
+  const res = await fetch(RULES_URL)
   const data = await res.text()
   return {
     props: { txtData: data }

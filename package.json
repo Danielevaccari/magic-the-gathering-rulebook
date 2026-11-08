@@ -1,5 +1,5 @@
 {
-  "name": "client",
+  "name": "magic-the-gathering-rulebook",
   "jest": {
     "verbose": true,
     "testEnvironment": "jsdom",

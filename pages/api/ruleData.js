@@ -1,7 +1,8 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { RULES_URL } from '../../lib/rules'
 
-//Fetches .txt data to https://reaktor-next-js-express-js-preassignment.vercel.app/api/ruledata
+//Returns the comprehensive rules .txt data at /api/ruleData
 export default async function getInitialProps(req, res) {
-  const response = await fetch('https://media.wizards.com/2021/downloads/MagicCompRules%2020210419.txt')
+  const response = await fetch(RULES_URL)
   res.send(await response.text());
 }
