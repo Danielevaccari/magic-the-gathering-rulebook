@@ -1,41 +1,25 @@
 {
   "name": "magic-the-gathering-rulebook",
-  "jest": {
-    "verbose": true,
-    "testEnvironment": "jsdom",
-    "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
-      "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }
-  },
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
-  "proxy": "https://newest-react-express.herokuapp.com/",
   "scripts": {
+    "rules": "node scripts/build-rules.mjs",
+    "predev": "node scripts/build-rules.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/build-rules.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "test": "jest"
+    "lint": "eslint .",
+    "test": "vitest run"
   },
   "dependencies": {
-    "@babel/preset-env": "^7.15.0",
-    "@material-ui/core": "^4.12.2",
-    "@testing-library/dom": "^8.1.0",
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "jest-dom": "^4.0.0",
-    "next": "11.0.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-test-renderer": "^17.0.2"
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "jest": "^27.0.6",
-    "babel-jest": "^27.0.6",
-    "@babel/plugin-transform-modules-commonjs": "^7.15.0",
-    "@babel/preset-react": "^7.14.5",
-    "eslint": "7.31.0",
-    "eslint-config-next": "11.0.1"
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "vitest": "latest"
   }
 }

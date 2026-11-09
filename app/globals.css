@@ -1,0 +1,490 @@
+:root {
+  --bg: #0b0b14;
+  --text: #ecebf5;
+  --muted: #a3a1bd;
+  --accent: #a78bfa;
+  --accent-2: #60a5fa;
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.1);
+  --border: rgba(255, 255, 255, 0.14);
+  --radius: 20px;
+  --header-h: 64px;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 24px);
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Soft colour blobs the glass panels blur. Fixed, so they cost nothing while scrolling. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(40vmax 40vmax at 12% 8%, rgba(124, 58, 237, 0.55), transparent 70%),
+    radial-gradient(45vmax 45vmax at 90% 15%, rgba(37, 99, 235, 0.45), transparent 70%),
+    radial-gradient(40vmax 40vmax at 70% 95%, rgba(219, 39, 119, 0.35), transparent 70%),
+    radial-gradient(35vmax 35vmax at 5% 90%, rgba(20, 184, 166, 0.3), transparent 70%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .glass {
+    background: #1a1a2b;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Header */
+.topbar {
+  position: sticky;
+  top: 12px;
+  z-index: 30;
+  height: var(--header-h);
+  margin: 12px 16px 0;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: var(--radius);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.brand strong {
+  font-size: 15px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.brand span {
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.search {
+  flex: 1;
+  max-width: 520px;
+  margin-left: auto;
+}
+.search input {
+  width: 100%;
+  height: 42px;
+  padding: 0 16px;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  background: var(--glass-strong);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.search input::placeholder {
+  color: var(--muted);
+}
+.search input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.25);
+}
+
+.menu-btn {
+  display: none;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  color: inherit;
+  background: var(--glass-strong);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+}
+.menu-btn span {
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+}
+
+/* Layout */
+.layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.sidebar {
+  position: sticky;
+  top: calc(var(--header-h) + 28px);
+  max-height: calc(100dvh - var(--header-h) - 44px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 12px;
+  border-radius: var(--radius);
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+}
+.nav-section h2 {
+  margin: 14px 8px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nav-section:first-child h2 {
+  margin-top: 4px;
+}
+.nav-section ul,
+.card ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-section a {
+  display: block;
+  padding: 7px 10px;
+  font-size: 14px;
+  line-height: 1.35;
+  border-radius: 10px;
+  transition: background 0.12s;
+}
+.nav-section a span,
+.card a span {
+  display: inline-block;
+  min-width: 2.4em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.nav-section a:hover {
+  background: var(--glass-strong);
+}
+.nav-section a[aria-current='page'] {
+  background: linear-gradient(90deg, rgba(167, 139, 250, 0.3), rgba(96, 165, 250, 0.2));
+  box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.45);
+}
+
+.scrim {
+  display: none;
+}
+
+.content {
+  min-width: 0;
+  min-height: calc(100dvh - var(--header-h) - 44px);
+  padding: clamp(18px, 4vw, 44px);
+  border-radius: var(--radius);
+}
+
+/* Reading content */
+.chapter-title,
+.hero-title {
+  margin: 0 0 20px;
+  font-size: clamp(24px, 4vw, 34px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.chapter-title span {
+  color: var(--accent);
+}
+.muted {
+  color: var(--muted);
+}
+
+.rules {
+  max-width: 78ch;
+}
+.rule {
+  position: relative;
+  padding: 10px 14px 10px 14px;
+  margin: 0 -14px;
+  border-radius: 12px;
+  /* Skip layout/paint of off-screen rules: keeps long chapters fast. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 90px;
+}
+.rule p {
+  margin: 0;
+}
+.rule.sub {
+  margin-left: 18px;
+}
+.rid {
+  display: inline-block;
+  margin-bottom: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.rid:hover {
+  color: var(--accent);
+}
+.rule:target {
+  background: rgba(167, 139, 250, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.5);
+}
+.example {
+  margin-top: 8px !important;
+  padding: 8px 12px;
+  font-size: 15px;
+  color: #cfcde6;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--accent-2);
+  border-radius: 0 10px 10px 0;
+}
+.ref {
+  color: var(--accent-2);
+  text-decoration: underline;
+  text-decoration-color: rgba(96, 165, 250, 0.4);
+  text-underline-offset: 3px;
+}
+.ref:hover {
+  color: #93c5fd;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 36px;
+}
+.pager a {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 16px;
+  max-width: 48%;
+  font-size: 14px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: background 0.12s;
+}
+.pager a:hover {
+  background: var(--glass-strong);
+}
+.pager small {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.pager .next {
+  margin-left: auto;
+  text-align: right;
+}
+
+/* Landing page */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin-top: 28px;
+}
+.card {
+  padding: 16px 12px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+.card h2 {
+  margin: 0 8px 8px;
+  font-size: 15px;
+}
+.card a {
+  display: block;
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+.card a:hover {
+  background: var(--glass-strong);
+}
+kbd {
+  padding: 1px 7px;
+  font: inherit;
+  font-size: 13px;
+  background: var(--glass-strong);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+/* Search results */
+.results {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+  max-width: 80ch;
+}
+.results a {
+  display: block;
+  padding: 12px 14px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  transition: background 0.12s, border-color 0.12s;
+}
+.results a:hover {
+  background: var(--glass-strong);
+  border-color: rgba(167, 139, 250, 0.5);
+}
+.result-meta {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--accent);
+}
+.result-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 15px;
+  overflow-wrap: anywhere;
+}
+mark {
+  color: inherit;
+  background: rgba(250, 204, 21, 0.3);
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+.footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+}
+.footer a {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Tablet and phone: chapter list becomes a slide-over drawer */
+@media (max-width: 900px) {
+  .menu-btn {
+    display: flex;
+  }
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 12px;
+  }
+  .topbar {
+    margin: 8px 12px 0;
+    gap: 10px;
+    padding: 0 10px;
+  }
+  .sidebar {
+    position: fixed;
+    z-index: 40;
+    top: 12px;
+    bottom: 12px;
+    left: 12px;
+    width: min(320px, calc(100vw - 48px));
+    max-height: none;
+    transform: translateX(calc(-100% - 24px));
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background: rgba(20, 20, 36, 0.85);
+  }
+  .sidebar.open {
+    transform: none;
+  }
+  .scrim {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 35;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .scrim.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 560px) {
+  .brand span {
+    display: none;
+  }
+  .brand strong {
+    font-size: 13px;
+    max-width: 90px;
+    white-space: normal;
+    line-height: 1.15;
+  }
+  .rule.sub {
+    margin-left: 8px;
+  }
+  .pager a {
+    max-width: 100%;
+  }
+  .pager {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition: none !important;
+  }
+}
