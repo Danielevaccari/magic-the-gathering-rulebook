@@ -2,13 +2,13 @@
   --bg: #0b0b14;
   --text: #ecebf5;
   --muted: #a3a1bd;
-  --accent: #a78bfa;
-  --accent-2: #60a5fa;
+  --accent: #9db0d6;
+  --accent-2: #8aa4cf;
   --glass: rgba(255, 255, 255, 0.06);
   --glass-strong: rgba(255, 255, 255, 0.1);
   --border: rgba(255, 255, 255, 0.14);
-  --radius: 20px;
-  --header-h: 64px;
+  --radius: 8px;
+  --header-h: 52px;
   color-scheme: dark;
 }
 
@@ -28,7 +28,7 @@ body {
   min-height: 100dvh;
   background: var(--bg);
   color: var(--text);
-  font: 16px/1.65 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font: 15px/1.55 ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -39,10 +39,8 @@ body::before {
   inset: 0;
   z-index: -1;
   background:
-    radial-gradient(40vmax 40vmax at 12% 8%, rgba(124, 58, 237, 0.55), transparent 70%),
-    radial-gradient(45vmax 45vmax at 90% 15%, rgba(37, 99, 235, 0.45), transparent 70%),
-    radial-gradient(40vmax 40vmax at 70% 95%, rgba(219, 39, 119, 0.35), transparent 70%),
-    radial-gradient(35vmax 35vmax at 5% 90%, rgba(20, 184, 166, 0.3), transparent 70%);
+    radial-gradient(45vmax 45vmax at 10% 5%, rgba(99, 118, 160, 0.28), transparent 70%),
+    radial-gradient(45vmax 45vmax at 95% 95%, rgba(99, 118, 160, 0.18), transparent 70%);
 }
 
 a {
@@ -51,10 +49,10 @@ a {
 }
 
 .glass {
-  background: var(--glass);
+  background: rgba(22, 22, 36, 0.72);
   border: 1px solid var(--border);
-  backdrop-filter: blur(22px) saturate(150%);
-  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
@@ -69,10 +67,10 @@ a {
 /* Header */
 .topbar {
   position: sticky;
-  top: 12px;
+  top: 8px;
   z-index: 30;
   height: var(--header-h);
-  margin: 12px 16px 0;
+  margin: 8px 12px 0;
   padding: 0 16px;
   display: flex;
   align-items: center;
@@ -88,10 +86,7 @@ a {
 }
 .brand strong {
   font-size: 15px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--text);
 }
 .brand span {
   font-size: 12px;
@@ -107,14 +102,14 @@ a {
 }
 .search input {
   width: 100%;
-  height: 42px;
+  height: 36px;
   padding: 0 16px;
   color: var(--text);
   font: inherit;
   font-size: 15px;
   background: var(--glass-strong);
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 8px;
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
@@ -123,13 +118,13 @@ a {
 }
 .search input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.25);
+  box-shadow: 0 0 0 3px rgba(157, 176, 214, 0.25);
 }
 
 .menu-btn {
   display: none;
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   padding: 0;
   flex-direction: column;
   justify-content: center;
@@ -138,7 +133,7 @@ a {
   color: inherit;
   background: var(--glass-strong);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 6px;
   cursor: pointer;
 }
 .menu-btn span {
@@ -151,17 +146,17 @@ a {
 /* Layout */
 .layout {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 12px;
   align-items: start;
-  max-width: 1500px;
+  max-width: none;
   margin: 0 auto;
-  padding: 16px;
+  padding: 12px;
 }
 
 .sidebar {
   position: sticky;
-  top: calc(var(--header-h) + 28px);
+  top: calc(var(--header-h) + 20px);
   max-height: calc(100dvh - var(--header-h) - 44px);
   overflow-y: auto;
   overscroll-behavior: contain;
@@ -192,7 +187,7 @@ a {
   padding: 7px 10px;
   font-size: 14px;
   line-height: 1.35;
-  border-radius: 10px;
+  border-radius: 6px;
   transition: background 0.12s;
 }
 .nav-section a span,
@@ -206,8 +201,8 @@ a {
   background: var(--glass-strong);
 }
 .nav-section a[aria-current='page'] {
-  background: linear-gradient(90deg, rgba(167, 139, 250, 0.3), rgba(96, 165, 250, 0.2));
-  box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.45);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 2px 0 0 var(--accent);
 }
 
 .scrim {
@@ -217,14 +212,14 @@ a {
 .content {
   min-width: 0;
   min-height: calc(100dvh - var(--header-h) - 44px);
-  padding: clamp(18px, 4vw, 44px);
+  padding: clamp(14px, 2.5vw, 28px);
   border-radius: var(--radius);
 }
 
 /* Reading content */
 .chapter-title,
 .hero-title {
-  margin: 0 0 20px;
+  margin: 0 0 14px;
   font-size: clamp(24px, 4vw, 34px);
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -237,13 +232,13 @@ a {
 }
 
 .rules {
-  max-width: 78ch;
+  max-width: 110ch;
 }
 .rule {
   position: relative;
-  padding: 10px 14px 10px 14px;
-  margin: 0 -14px;
-  border-radius: 12px;
+  padding: 6px 12px;
+  margin: 0 -12px;
+  border-radius: 6px;
   /* Skip layout/paint of off-screen rules: keeps long chapters fast. */
   content-visibility: auto;
   contain-intrinsic-size: auto 90px;
@@ -267,8 +262,8 @@ a {
   color: var(--accent);
 }
 .rule:target {
-  background: rgba(167, 139, 250, 0.16);
-  box-shadow: inset 0 0 0 1px rgba(167, 139, 250, 0.5);
+  background: rgba(157, 176, 214, 0.14);
+  box-shadow: inset 0 0 0 1px rgba(157, 176, 214, 0.5);
 }
 .example {
   margin-top: 8px !important;
@@ -277,23 +272,23 @@ a {
   color: #cfcde6;
   background: rgba(255, 255, 255, 0.05);
   border-left: 3px solid var(--accent-2);
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 6px 6px 0;
 }
 .ref {
   color: var(--accent-2);
   text-decoration: underline;
-  text-decoration-color: rgba(96, 165, 250, 0.4);
+  text-decoration-color: rgba(138, 164, 207, 0.45);
   text-underline-offset: 3px;
 }
 .ref:hover {
-  color: #93c5fd;
+  color: #b7c9e8;
 }
 
 .pager {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-top: 36px;
+  margin-top: 24px;
 }
 .pager a {
   display: flex;
@@ -303,7 +298,7 @@ a {
   font-size: 14px;
   background: var(--glass);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 8px;
   transition: background 0.12s;
 }
 .pager a:hover {
@@ -323,7 +318,7 @@ a {
 /* Landing page */
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 14px;
   margin-top: 28px;
 }
@@ -331,7 +326,7 @@ a {
   padding: 16px 12px;
   background: var(--glass);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 8px;
 }
 .card h2 {
   margin: 0 8px 8px;
@@ -369,12 +364,12 @@ kbd {
   padding: 12px 14px;
   background: var(--glass);
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 8px;
   transition: background 0.12s, border-color 0.12s;
 }
 .results a:hover {
   background: var(--glass-strong);
-  border-color: rgba(167, 139, 250, 0.5);
+  border-color: rgba(157, 176, 214, 0.5);
 }
 .result-meta {
   display: block;
@@ -399,7 +394,7 @@ mark {
 }
 
 .footer {
-  margin-top: 48px;
+  margin-top: 32px;
   padding-top: 16px;
   font-size: 12px;
   color: var(--muted);
@@ -487,4 +482,71 @@ mark {
   * {
     transition: none !important;
   }
+}
+
+/* Landing page: the sidebar already lists every chapter on desktop, so only show the cards when it is a drawer. */
+.quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+}
+.quick a {
+  padding: 8px 12px;
+  font-size: 14px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.quick a:hover {
+  background: var(--glass-strong);
+}
+.quick span {
+  color: var(--muted);
+  margin-right: 6px;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.stats li {
+  font-size: 13px;
+  color: var(--muted);
+}
+.stats strong {
+  display: block;
+  font-size: 26px;
+  line-height: 1.1;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.card {
+  padding: 16px;
+}
+.card h2 {
+  margin: 0 0 4px;
+}
+.card p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.card ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.card li a {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.card li a span {
+  min-width: 0;
+  margin-right: 4px;
 }

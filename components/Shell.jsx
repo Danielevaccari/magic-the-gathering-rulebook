@@ -111,7 +111,7 @@ export default function Shell({ sections, titles, updated, children }) {
           <div hidden={searching}>{children}</div>
           {searching && <SearchResults query={deferred.trim() || query.trim()} index={index} titles={titles} onNavigate={closeAll} />}
           <footer className="footer">
-            Rules effective {updated}. Unofficial fan project, not affiliated with Wizards of the Coast. Text from the{' '}
+            Rules effective {updated}. Not affiliated with Wizards of the Coast. Text from the{' '}
             <a href="https://magic.wizards.com/en/rules" target="_blank" rel="noreferrer">
               Comprehensive Rules
             </a>
